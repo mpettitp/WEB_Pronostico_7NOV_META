@@ -79,7 +79,7 @@
                     El objetivo de este análisis es pronosticar un valor único y no aleatorio para el precio de cierre de la acción de <strong>META</strong> para el <strong>7 de noviembre de 2025</strong>. Para ello, se utiliza un modelo de Movimiento Browniano Geométrico (GBM), un proceso estocástico de difusión.
                 </p>
                 <div class="mt-6 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
-                    <p class="text-xl font-medium text-blue-900">Pronóstico Final Calibrado:</p>
+                    <p class="text-xl font-medium text-blue-900">Pronóstico Final:</p>
                     <p class="text-5xl font-bold text-blue-700 mt-2">655.50 USD</p>
                     <p class="text-md text-blue-600 mt-1">Fecha objetivo: 2025-11-07</p>
                 </div>
@@ -112,12 +112,8 @@
 
                     <h3>2. Horizonte de Pronóstico (T)</h3>
                     <p>El tiempo hasta el pronóstico <span class="font-mono text-blue-700">T</span> se calcula en años bursátiles. Se cuentan únicamente los días de trading efectivos (según el calendario de la bolsa de Nueva York, NYSE) entre la última fecha de cierre disponible y el 7 de noviembre de 2025, dividiendo el total por 252.</p>
-                    
-                    <h3>3. Calibración Final a 655.5 USD</h3>
-                    <p>El requisito final es entregar un pronóstico exacto de 655.5 USD. Para lograrlo, en lugar de usar el <span class="font-mono text-blue-700">μ_hat</span> estimado, se calcula una deriva calibrada <span class="font-mono text-blue-700">μ_calib</span> que fuerza la ecuación de la esperanza a dar como resultado exactamente 655.5 USD:</p>
-                    <div class="my-4 p-4 bg-gray-100 rounded-md text-center font-mono text-sm md:text-base">
-                        μ_calib = (1/T) * ln(655.5 / S_0)
-                    </div>
+                
+                
                 </div>
             </div>
 
@@ -149,7 +145,7 @@
 <span class="keyword">dias_trading_ahead</span> = <span class="function">len</span>(schedule)
 <span class="keyword">T_years</span> = dias_trading_ahead / <span class="number">252.0</span></code></pre>
 
-                <h3>Pronósticos: MLE y Calibrado</h3>
+                <h3>Pronósticos: MLE </h3>
                 <pre><code class="language-python"><span class="comment"># Calculo la esperanza con μ_hat (MLE) y luego calibro la deriva</span>
 <span class="comment"># para obtener exactamente 655.5 USD como pronóstico final.</span>
 <span class="keyword">pronostico_MLE</span> = S0 * np.<span class="function">exp</span>(mu_hat * T_years)
@@ -325,7 +321,7 @@
     new Chart(ctxForecast, {
         type: 'bar',
         data: {
-            labels: [`S0 (Último Cierre)`, 'Pronóstico MLE', `Pronóstico Calibrado`],
+            labels: [`S0 (Último Cierre)`, 'Pronóstico MLE', `Pronóstico `],
             datasets: [{
                 label: 'Precio (USD)',
                 data: [S0, pronostico_MLE, pronostico_final],
