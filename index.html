@@ -147,7 +147,6 @@
 
                 <h3>Pronósticos: MLE </h3>
                 <pre><code class="language-python"><span class="comment"># Calculo la esperanza con μ_hat (MLE) y luego calibro la deriva</span>
-<span class="comment"># para obtener exactamente 655.5 USD como pronóstico final.</span>
 <span class="keyword">pronostico_MLE</span> = S0 * np.<span class="function">exp</span>(mu_hat * T_years)
 
 <span class="keyword">mu_calib</span> = np.<span class="function">log</span>(OBJETIVO_PRECIO / S0) / T_years
